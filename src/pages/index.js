@@ -160,7 +160,7 @@ const IndexPage = () => {
   }, [shoutTime, initialShoutTime])
 
   // todo render ALL prices
-  const getPrices = () => {}
+  const getPrices = () => { }
 
   const formattedMenuDataArr = []
   const buildSection = element => {
@@ -380,10 +380,13 @@ const IndexPage = () => {
     }
   }, [menuData, recurringData, eventData, shoutData, displayType, activeTypes])
 
+  // menuData.length && recurringData.length && eventData && shoutData
+
   useEffect(() => {
-    if (menuData.length && recurringData.length && eventData && shoutData) {
-      setIsLoading(false)
-    }
+    // if (eventData.length && shoutData.shout) {
+
+    setIsLoading(false)
+    // }
     if (!isLoading) {
       if (displayType !== "list") {
         setSlideData(
@@ -398,7 +401,7 @@ const IndexPage = () => {
         )
       }
     }
-  }, [isLoading, menuData, recurringData, shoutData, displayType, activeTypes])
+  }, [isLoading, menuData, recurringData, shoutData, displayType, activeTypes, eventData, shoutData])
 
   useEffect(() => {
     if (activeTypes) {
@@ -413,7 +416,7 @@ const IndexPage = () => {
       return allSlideData.filter(
         item =>
           item.image !==
-            "https://res.cloudinary.com/gonation/gonation.data.prod/default/img-itm-cover-full.png" &&
+          "https://res.cloudinary.com/gonation/gonation.data.prod/default/img-itm-cover-full.png" &&
           !filteredOutSections.includes(item.sectionName) &&
           activeTypes.includes(item.type)
       )
@@ -480,7 +483,7 @@ const IndexPage = () => {
         .filter(
           item =>
             item.image !==
-              "https://res.cloudinary.com/gonation/gonation.data.prod/default/img-itm-cover-full.png" &&
+            "https://res.cloudinary.com/gonation/gonation.data.prod/default/img-itm-cover-full.png" &&
             activeTypes.includes(item.type) &&
             !filteredOutSections.includes(item.sectionName)
         )
@@ -519,7 +522,7 @@ const IndexPage = () => {
       />
       {displayType === "both" && !isLoading ? (
         renderBoth()
-      ) : slideData.length > 1 ? (
+      ) : slideData.length >= 0 ? (
         <Carousel
           showThumbs={false}
           useKeyboardArrows={true}
@@ -533,11 +536,11 @@ const IndexPage = () => {
           autoPlay={toggleSingleEventsView ? false : true}
           emulateTouch={true}
         >
-          {!isLoading && handleRender()}
+          {slideData && handleRender()}
         </Carousel>
       ) : (
-        ""
-      )}
+            ""
+          )}
     </Layout>
   )
 }

@@ -404,10 +404,10 @@ const IndexPage = () => {
   }, [isLoading, menuData, recurringData, shoutData, displayType, activeTypes, eventData, shoutData])
 
   useEffect(() => {
-    if (activeTypes) {
+    if (activeTypes && slideData && recurringData) {
       handleRender()
     }
-  }, [activeTypes])
+  }, [activeTypes, slideData, recurringData])
 
   const handleFiltering = allSlideData => {
     if (toggleSingleEventsView) {
